@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Get Started Today</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        label .required {
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input.error,
+        textarea.error {
+            border-color: #e74c3c;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Get in Touch</h1>
+        <p class="subtitle">Fill out the form below and we'll get back to you as soon as possible.</p>
+
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">
+                    Name <span class="required">*</span>
+                </label>
+                <input type="text" id="name" name="name" required>
+                <div class="error-message" id="nameError">Please enter your name</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">
+                    Email <span class="required">*</span>
+                </label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="emailError">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company">
+            </div>
+
+            <div class="form-group">
+                <label for="message">
+                    Message <span class="required">*</span>
+                </label>
+                <textarea id="message" name="message" required></textarea>
+                <div class="error-message" id="messageError">Please enter your message</div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Send Message
+            </button>
+
+            <div class="message" id="successMessage">
+                ✓ Thank you! Your message has been sent successfully. We'll get back to you soon.
+            </div>
+
+            <div class="message error" id="errorMessage">
+                ✗ Something went wrong. Please try again or contact us directly.
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // ⚙️ CONFIGURATION: Replace with your Make.com webhook URL
+        // ⚠️ If you get HTTP 410 error, the webhook URL is gone - create a new one in Make.com
+        const WEBHOOK_URL = 'https://hook.eu1.make.com/gont6bi685bb191ryih14g9qyx6xrmul';
+        
+        // Debug: Log webhook URL on load (check browser console)
+        console.log('Webhook URL:', WEBHOOK_URL);
+        console.log('⚠️ If you see HTTP 410, create a new webhook in Make.com and update this URL');
+
+        // Get form elements
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Validation functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showError(fieldId, errorId, message) {
+            const field = document.getElementById(fieldId);
+            const error = document.getElementById(errorId);
+            field.classList.add('error');
+            error.textContent = message;
+            error.classList.add('show');
+        }
+
+        function clearError(fieldId, errorId) {
+            const field = document.getElementById(fieldId);
+            const error = document.getElementById(errorId);
+            field.classList.remove('error');
+            error.classList.remove('show');
+        }
+
+        function validateForm() {
+            let isValid = true;
+
+            // Validate name
+            const name = document.getElementById('name').value.trim();
+            if (!name) {
+                showError('name', 'nameError', 'Please enter your name');
+                isValid = false;
+            } else {
+                clearError('name', 'nameError');
+            }
+
+            // Validate email
+            const email = document.getElementById('email').value.trim();
+            if (!email) {
+                showError('email', 'emailError', 'Please enter your email address');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('email', 'emailError', 'Please enter a valid email address');
+                isValid = false;
+            } else {
+                clearError('email', 'emailError');
+            }
+
+            // Validate message
+            const message = document.getElementById('message').value.trim();
+            if (!message) {
+                showError('message', 'messageError', 'Please enter your message');
+                isValid = false;
+            } else {
+                clearError('message', 'messageError');
+            }
+
+            return isValid;
+        }
+
+        // Form submission handler
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Hide previous messages
+            successMessage.classList.remove('show');
+            errorMessage.classList.remove('show');
+
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+
+            // Prepare payload
+            const payload = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                company: document.getElementById('company').value.trim() || null,
+                message: document.getElementById('message').value.trim(),
+                source: 'website_form'
+            };
+
+            // Debug: Log payload (check browser console)
+            console.log('Submitting payload:', payload);
+            console.log('Webhook URL:', WEBHOOK_URL);
+
+            try {
+                // Send to Make.com webhook
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                // Make.com webhooks typically return 200 OK even if scenario fails
+                // So we check for both 200-299 range and also check response
+                if (response.ok || response.status === 200) {
+                    // Success - Make.com received the webhook
+                    successMessage.classList.add('show');
+                    form.reset();
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    // HTTP error
+                    const errorText = await response.text().catch(() => '');
+                    console.error('HTTP error:', response.status, errorText);
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+            } catch (error) {
+                // Network or other error
+                console.error('Error submitting form:', error);
+                
+                // Show more detailed error message
+                let errorMsg = 'Something went wrong. Please try again or contact us directly.';
+                
+                if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                    errorMsg = 'Network error. Please check your internet connection and try again.';
+                } else if (error.message.includes('HTTP error')) {
+                    errorMsg = `Server error (${error.message}). Please try again later.`;
+                }
+                
+                errorMessage.textContent = `✗ ${errorMsg}`;
+                errorMessage.classList.add('show');
+                
+                // Scroll to error message
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+
+        // Real-time validation (optional - clears errors as user types)
+        document.getElementById('name').addEventListener('input', () => {
+            if (document.getElementById('name').value.trim()) {
+                clearError('name', 'nameError');
+            }
+        });
+
+        document.getElementById('email').addEventListener('input', () => {
+            const email = document.getElementById('email').value.trim();
+            if (email && validateEmail(email)) {
+                clearError('email', 'emailError');
+            }
+        });
+
+        document.getElementById('message').addEventListener('input', () => {
+            if (document.getElementById('message').value.trim()) {
+                clearError('message', 'messageError');
+            }
+        });
+    </script>
+</body>
+</html>
+
