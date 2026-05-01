@@ -28,8 +28,9 @@ Perfect for small teams who want enterprise-level lead processing without comple
 ### Step 1: Clone & Setup
 
 ```bash
-# Navigate to project directory
-cd /Users/sakib/Project/Make.com
+# Navigate to project directory (after clone)
+git clone https://github.com/sakib-maho/ai-lead-intake-crm-automation.git
+cd ai-lead-intake-crm-automation
 
 # Create virtual environment
 python3 -m venv venv
